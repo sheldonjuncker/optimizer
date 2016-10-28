@@ -4,6 +4,11 @@ import semantic.analyzer;
 import parser.j_parser;
 import std.stdio;
 
+class Test
+{
+	int x;
+}
+
 int main()
 {
 	//Create a new parser
@@ -22,7 +27,10 @@ int main()
 	a.analyzeVariables();
 
 	//Load the modified AST into the optimizer
-	JOptimizer o = new JOptimizer(a.ast);
+	JOptimizer o = new JOptimizer(a.ast, a.env);
+
+	//Remove unused variables
+	o.removeUnusedVariables();
 
 	//Reprint the modified AST
 	writeln("\n\nOptimized AST:");

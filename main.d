@@ -31,6 +31,10 @@ int main()
 
 	//Remove unused variables
 	o.removeUnusedVariables();
+	
+	//Remove all nodes that have no effect
+	o.removeUselessNodes();
+
 
 	//Reprint the modified AST
 	writeln("\n\nOptimized AST:");

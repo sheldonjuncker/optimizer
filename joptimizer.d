@@ -48,6 +48,23 @@ class JOptimizer
 	}
 
 	/**
+	* Removes all nodes that have no effect.
+	*/
+	void removeUselessNodes()
+	{
+		//Go through AST and remove nodes that !hasEffect()
+		static void removeUseless(ref Node node)
+		{
+			if(!node.hasEffect())
+			{
+				node = new NullNode;
+			}
+		}
+		
+		ast.each(&removeUseless);
+	}
+
+	/**
 	* Constructs the optimizer.
 	*/
 	this(Node ast, Environment env)
